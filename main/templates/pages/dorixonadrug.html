@@ -1,0 +1,117 @@
+{% extends "index.html"%}
+
+
+{% block content %}
+<div class="blog-page-main-container float_left ptb-100">
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-lg-8 col-md-12 col-sm-12">
+                <div class="blog-single-main-page ">
+                    <div class="service-content mt-25 shadow p-3 mb-5 bg-body-tertiary rounded">
+                        <h6 class="mb-2">{{ dorixon }}</h6>
+                        <p>
+                            {{ dorixon.article }}
+                        </p>
+                    </div>
+                    <h3>Список лекарств: {{ dorixon }}</h3>
+                    <div class="blog-box">
+                        <div class="blog-content p-0 row row-cols-1 row-cols-md-3 g-4 ">
+                            {% for item in drug%}
+                            <div class="card col " style="width: 17rem; margin: 10px;">
+                                {% if item.img %}
+                                <img src="{{item.img.url}}" alt="" width="200">
+                                {% else %}
+                                <img src="/static/main/images/tab/tab-img-02.jpg" alt="img" width="100">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ item.title }}</h5>
+                                    <p class="card-text">{{ item.article|truncatewords:5 }}</p>
+                                    <a href="{% url 'drugdetail' item.id %}" class="btn btn-primary">подробнее</a>
+                                    <a href="" class="btn btn-primary winclick" data-id="{{ item.id}}"
+                                       data-url="{% url 'werajax' item.id%}">быстрый просмотр</a>
+                                    <p class="card-text"><a href="{% url 'dorixonadrug' item.caetegorydorixona_id  %}">Аптека:{{
+                                        item.caetegorydorixona.title }}</a></p>
+                                    <p class="card-text"><a href="{% url 'categordrug' item.caetegorydrug_id  %}">Категория:{{
+                                        item.caetegorydrug.title }}</a></p>
+                                    <p class="card-text">Цена:{{ item.price }}</p>
+                                    {% if user.status == '1' %}
+                                    <a href="" class="btn btn-primary cart-click" data-id="{{ item.id}}"
+                                       data-url="{% url 'addajax'%}">купить</a>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+                            {% endfor%}
+                            {% include 'components/modalwin.html' %}
+                            {% include 'components/modalwin3.html' %}
+                            {% include 'components/modalwin2.html' %}
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                <div class="right-section2">
+                    <div class="form-section ">
+                        <h6>Аптеки</h6>
+                        <section>
+                            <ul class="categories">
+                                {% for item in dorix %}
+                                <li>
+                                    <span><i class="fas fa-angle-double-right"></i></span>
+                                    <a style="cursor:pointer" data-id="{{ item.id }}" data-url="{% url 'dorixonapage'%}"
+                                       class="pagedori">{{ item.title }}</a>
+                                </li>
+                                {% endfor%}
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="form-section ">
+                        <h6>Categories</h6>
+                        <section>
+                            <ul class="categories">
+                                {% for item in cat %}
+                                <li>
+                                    <span><i class="fas fa-angle-double-right"></i></span>
+                                    <a style="cursor:pointer" data-id="{{ item.id }}"
+                                       data-url="{% url 'catdrug' item.id %}" class="drugpage">{{ item.title }}</a>
+                                </li>
+                                {% endfor%}
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="form-section mt-25">
+                        <h6>Location</h6>
+                        <div style="width: 100%">
+                            <!--                            <iframe height="350"-->
+                            <!--                                    src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>-->
+                            <iframe height="350"
+                                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d374.7333377251351!2d69.25662421683549!3d41.290005463526526!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8aeec502085b%3A0x9b3026b68acd30c1!2z0KPRh9C10LHQvdGL0Lkg0KbQtdC90YLRgCBNYXN0ZXJDbGFzcw!5e0!3m2!1sen!2sus!4v1738044792485!5m2!1sen!2sus"
+                                    width="600" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <a
+                                    href="https://www.maps.ie/draw-radius-circle-map/"></a></div>
+                    </div>
+                    <div class="form-section social">
+                        <h6>Social Media</h6>
+                        <ul class="d-flex justfiy-content-start align-items-center p-4">
+                            <li><a href="javascript:;"><i class="fab fa-facebook-f icon-color"></i></a></li>
+                            <li><a href="javascript:;"><i class="fab fa-twitter icon-color"></i></a></li>
+                            <li><a href="javascript:;"><i class="fab fa-instagram icon-color"></i></a></li>
+                            <li><a href="javascript:;"><i class="fab fa-pinterest-p icon-color"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+

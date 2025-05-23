@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+{% block content %}
+{% if user.status == "0" %}
+    {% include "pages/cab_user_1.html" %}
+{% elif user.status == "1" %}
+    {% include "pages/cab_user_2.html" %}
+{% elif user.status == "2" %}
+    {% include "pages/cab_user_3.html" %}
+{% elif user.status == "3" %}
+    {% include "pages/cab_user_4.html" %}
+{% else%}
+    <h1>вы не зарегестрированы</h1>
+{% endif%}
+
+
+{% endblock %}
+

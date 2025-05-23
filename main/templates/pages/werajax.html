@@ -1,0 +1,10 @@
+
+    <h6 class="mb-2">{{ drug.title }}</h6>
+    <p>
+        {{ drug.article }}
+    </p>
+
+<p class="card-text">Цена:{{ drug.price }}</p>
+{% if user.status == '1' %}
+<a href="{% url 'addcart' drugs.pk drugs.caetegorydorixona_id %}" class="btn btn-primary">купить</a>
+{% endif %}

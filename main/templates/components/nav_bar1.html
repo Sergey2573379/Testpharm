@@ -1,0 +1,55 @@
+
+
+
+<nav class="navbar navbar-expand-lg">
+                        <ul class="navbar-nav">
+                           <li class="nav-item ps-rel">
+                              <a class="nav-link" href="{% url 'home3' %}">Home
+                                 <span><i class="fas fa-chevron-right"></i></span>
+                              </a>
+
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="javascript:;">Pages
+                                 <span><i class="fas fa-chevron-right"></i></span>
+                              </a>
+
+                           </li>
+                           <li class="nav-item ps-rel">
+                              <a class="nav-link" href="javascript:;">Services
+                                 <span><i class="fas fa-chevron-right"></i></span>
+                              </a>
+                           </li>
+                           <li class="nav-item ps-rel">
+                              <a class="nav-link" href="{% url 'dorixona' %}">Аптеки
+                                 <span><i class="fas fa-chevron-right"></i></span>
+                              </a>
+                           </li>
+                           <li class="nav-item ps-rel">
+                              <a class="nav-link" href="#">Категории
+                                 <span><i class="fas fa-chevron-right"></i></span>
+                              </a>
+                              <ul class="dropdown-items">
+                                 {% for item in cat %}
+                           <li>
+                              <span><i class="fas fa-angle-double-right"></i></span>
+                              <a href="{% url 'categordrug' item.id %}">{{ item.title }}</a>
+                           </li>
+                           {% endfor%}
+
+                              </ul>
+                           </li>
+                           <li class="nav-item ps-rel">
+                              <a class="nav-link" href="javascript:;">Shortcode
+                                 <span><i class="fas fa-chevron-right"></i></span>
+                              </a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link cardclick" style="cursor:pointer" data-url="{% url 'cardpage'%}" data-id="{{ drug.id}}">Корзина</a>
+<!--                              <a class="nav-link" href="{% url 'card' %}">Корзина</a>-->
+
+
+                           </li>
+                        </ul>
+                     </nav>
+

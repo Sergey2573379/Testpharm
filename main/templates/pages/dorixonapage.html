@@ -1,0 +1,59 @@
+{% if drug3%}
+
+    <div class="blog-single-main-page ">
+        <div class="service-content mt-25 shadow p-3 mb-5 bg-body-tertiary rounded">
+            <h6 class="mb-2">{{ dorixon2 }}</h6>
+            <p>
+                {{ dorixon2.article }}
+            </p>
+        </div>
+        <h3>Список лекарств: {{ dorixon2 }}</h3>
+        <div class="blog-box">
+            <div class="blog-content p-0 row row-cols-1 row-cols-md-3 g-4 ">
+                {% for item in drug3%}
+                <div class="card col" style="width: 17rem; margin: 10px;">
+                    {% if item.img %}
+                    <img src="{{item.img.url}}" alt="" width="200">
+                    {% else %}
+                    <img src="/static/main/images/tab/tab-img-02.jpg" alt="img" width="100">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.title }}</h5>
+                        <p class="card-text">{{ item.article|truncatewords:5 }}</p>
+                        <a href="{% url 'drugdetail' item.id %}" class="btn btn-primary">подробнее</a>
+                        <a href="" class="btn btn-primary winclick" data-id="{{ item.id}}"
+                           data-url="{% url 'werajax' item.id%}">быстрый просмотр</a>
+                        <p class="card-text"><a href="{% url 'dorixonadrug' item.caetegorydorixona_id  %}">Аптека:{{ item.caetegorydorixona.title }}</a></p>
+                        <p class="card-text"><a href="{% url 'categordrug' item.caetegorydrug_id  %}">Категория:{{ item.caetegorydrug.title }}</a></p>
+                        <p class="card-text">Цена:{{ item.price }}</p>
+                        {% if user.status == '1' %}
+                        <a href="" class="btn btn-primary cart-click" data-id="{{ item.id}}" data-url="{% url 'addajax'%}">купить</a>
+                        {% endif %}
+
+                    </div>
+                </div>
+                {% endfor%}
+                {% include 'components/modalwin.html' %}
+                {% include 'components/modalwin3.html' %}
+                {% include 'components/modalwin2.html' %}
+            </div>
+
+
+        </div>
+
+    </div>
+
+{% else%}
+<p>нету лекарств</p>
+{% endif%}
+
+
+
+
+
+
+
+
+
+
+

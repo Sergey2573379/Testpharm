@@ -1,0 +1,31 @@
+
+
+
+
+    {% for item in drug4%}
+                            <div class="card col cartcategory pagedorq" style="width: 17rem; margin: 10px;">
+                                {% if item.img %}
+                                <img src="{{item.img.url}}" alt="" width="200">
+                                {% else %}
+                                <img src="/static/main/images/tab/tab-img-02.jpg" alt="img" width="100">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ item.title }}</h5>
+                                    <p class="card-text">{{ item.article|truncatewords:5 }}</p>
+                                    <a href="{% url 'drugdetail' item.id %}" class="btn btn-primary">подробнее</a>
+                                    <a href="" class="btn btn-primary winclick" data-id="{{ item.id}}" data-url="{% url 'werajax' item.id%}">быстрый просмотр</a>
+                                    <p class="card-text"><a href="{% url 'dorixonadrug' item.caetegorydorixona_id  %}">Аптека:{{ item.caetegorydorixona.title }}</a> </p>
+                                    <p class="card-text"><a href="{% url 'categordrug' item.caetegorydrug_id  %}" >Категория:{{ item.caetegorydrug.title }}</a></p>
+                                    <p class="card-text">Цена:{{ item.price }}</p>
+                                    {% if user.status == '1' %}
+                                    <a href="" class="btn btn-primary cart-click" data-id="{{ item.id}}" data-url="{% url 'addajax'%}">купить</a>
+                                    {% else %}
+                                    <p>вы не автризованы {{user.name}}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endfor%}
+                            {% include 'components/modalwin.html' %}
+                            {% include 'components/modalwin3.html' %}
+                            {% include 'components/modalwin2.html' %}
+

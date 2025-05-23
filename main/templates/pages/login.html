@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- 
+   Template Name: medisch
+   Version: 1.0.0
+   Author: 
+   
+   -->
+<!--[if IE 8]> 
+<html lang="en" class="ie8 no-js">
+   <![endif]-->
+<!--[if IE 9]> 
+   <html lang="en" class="ie9 no-js">
+      <![endif]-->
+<!--[if !IE]><!-->
+<html lang="zxx" dir="ltr">
+<!--[endif]-->
+
+<head>
+   <meta charset="utf-8" />
+   <title>Medical</title>
+   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+   <!--Template style -->
+   <link rel="stylesheet" type="text/css" href="/static/main/css/animate.css" />
+   <link rel="stylesheet" type="text/css" href="/static/main/css/animate.min.css" />
+   <link rel="stylesheet" type="text/css" href="/static/main/css/bootstrap.min.css" />
+   <link rel="stylesheet" type="text/css" href="/static/main/css/fonts.css" />
+   <link rel="stylesheet" type="text/css" href="/static/main/css/font-awesome.css" />
+   <link rel="stylesheet" type="text/css" href="/static/main/css/font-awesome.min.css" />
+   <link rel="stylesheet" type="text/css" href="/static/main/css/magnific-popup.css" />
+   <link rel="stylesheet" type="text/css" href="/static/main/css/owl.carousel.min.css" />
+   <link rel="stylesheet" type="text/css" href="/static/main/css/owl.theme.default.min.css" />
+   <link rel="stylesheet" type="text/css" href="/static/main/css/style.css" />
+   <link rel="stylesheet" type="text/css" href="/static/main/css/responsive.css" />
+   <!--favicon-->
+   <link rel="shortcut icon" type="image/png" href="images/fav-icon.png" />
+   {% include 'components/scriptpass.html' %}
+</head>
+
+<body>
+   <div class="login-main-wrapper">
+      <div class="container-fluid">
+         <div class="row align-items-center">
+            <div class="col-lg-6 col-md-12 col-12 p-0">
+               <div class="form-sidebar">
+                  <div class="logo-section">
+                     <img src="/static/main/images/logo3.png" alt="img">
+                  </div>
+                  <div class="form-image d-xl-block d-lg-block d-none">
+                     <img src="/static/main/images/form-img.png" alt="img">
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-12 p-0 ">
+
+               <div class="login-main success" >
+                  <form method="POST" action="" >
+                     {% csrf_token %}
+                     <h4>Welcome Back</h4>
+                     <p class="mb-3">Login by entering the information below</p>
+                     <div class="mt-2">
+                        <input type="text" class="my-width" placeholder="UserName*" name="name"/>
+                     </div>
+                     <div class="mt-2">
+                        <input type="password" id="password" class="my-width" placeholder="Password*" name="password" required/><br>
+                        <a type="button" id="toggleButton" onclick="togglePassword()">Показать пароль</a>
+                     </div>
+                     <ul class="">
+
+                        <li><a href="javascript:;">
+                              Forget Passsword?
+                           </a>
+                        </li>
+                     </ul>
+                     <div class="d-flex align-items-baseline ">
+                        <a href="javascript:;"><button class="button-btn mt-4 text-capitalize">Login
+                           <span><i class="fas fa-angle-double-right"></i></span></button>
+                        </a>
+                        <a href="{% url 'home' %}" class="ms-4 form-resp-display">Create Account</a>
+                     </div>
+                     <p class="mt-3"> Or you can join with</p>
+                     <ul class="form-media">
+                        <li><a href="javascript:;">
+                           <i class="fab fa-facebook"></i>
+                           </a>
+                        </li>
+                        <li><a href="javascript:;">
+                           <i class="fab fa-twitter"></i>
+                           </a>
+                        </li>
+                        <li><a href="javascript:;">
+                           <i class="fab fa-google"></i>
+                           </a>
+                        </li>
+                     </ul>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Side Panel -->
+   <script src="/static/main/js/jquery-3.6.0.min.js"></script>
+   <script src="/static/main/js/bootstrap.min.js"></script>
+   <script src="/static/main/js/wow.js"></script>
+   <script src="/static/main/js/jquery.magnific-popup.js"></script>
+   <script src="/static/main/js/owl.carousel.min.js"></script>
+   <script src="/static/main/js/contact_form.js"></script>
+   <script src="/static/main/js/custom.js"></script>
+   <!-- custom js-->
+   <script>
+      wow = new WOW(
+         {
+            animateClass: 'animated',
+            offset: 100,
+            callback: function (box) {
+               console.log("WOW: animating <" + box.tagName.toLowerCase() + ">")
+            }
+         }
+      );
+      wow.init();
+   </script>
+</body>
+
+</html>

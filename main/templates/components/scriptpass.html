@@ -1,0 +1,18 @@
+<script>
+    function togglePassword() {
+    var passwordInput = document.querySelector(".parol");
+    var toggleButton = document.querySelector(".knopka");
+
+    if (passwordInput && toggleButton) {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleButton.textContent = "Скрыть пароль";
+        } else {
+            passwordInput.type = "password";
+            toggleButton.textContent = "Показать пароль";
+        }
+    } else {
+        console.error('Element not found');
+    }
+}
+</script>

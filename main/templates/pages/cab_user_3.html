@@ -1,0 +1,215 @@
+<div class="tab-five-wrapper padd-100 float-start w-100">
+    <div class="section-heading">
+        <h4>привет {{ user.name }},
+            ваш статус:
+            {% if user.status == "2" %}
+            фармацевт
+            {% endif %}
+        </h4>
+    </div>
+    <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab-five" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-consult-tab" data-bs-toggle="pill" data-bs-target="#pills-consult"
+                    type="button" role="tab" aria-controls="pills-consult" aria-selected="true">Личная информация
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-planning-tab" data-bs-toggle="pill" data-bs-target="#pills-planning"
+                    type="button" role="tab" aria-controls="pills-planning" aria-selected="false">Изменить личную
+                информацию
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-investment-tab" data-bs-toggle="pill" data-bs-target="#pills-investment"
+                    type="button" role="tab" aria-controls="pills-investment" aria-selected="false">Список аптек
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-report-tab" data-bs-toggle="pill" data-bs-target="#pills-report"
+                    type="button" role="tab" aria-controls="pills-report" aria-selected="false">Список лекарств
+            </button>
+        </li>
+    </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="tab-content" id="pills-tabContentfive">
+                    <!--Личная информация-->
+                    <div class="tab-pane fade show active" id="pills-consult" role="tabpanel"
+                         aria-labelledby="pills-consult-tab">
+                        <div class="tab-five-head">
+                            <div class="tab-five-img">
+                                {% if user.img %}
+                                <img src="{{user.img.url}}" alt="" width="200">
+                                {% else %}
+                                <img src="/static/main/images/tab/tab-img-02.jpg" alt="img" width="300">
+                                {% endif %}
+                            </div>
+                            <div class="tab-five-content">
+                                <h2>кабинет 3</h2>
+                                <div class="tab-five-strategic">
+
+                                    <div class="strategic-content">
+                                        <h5>Личная информация</h5>
+                                        <table class="table table-striped-columns">
+                                            <tr>
+                                                <td>имя:</td>
+                                                <td>{{ user.name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>фамилия:</td>
+                                                <td>{{ user.family }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>емайл:</td>
+                                                <td>{{ user.email }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ваш статус:</td>
+                                                <td>{% if user.status == "2" %}
+                                                    фармацевт
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>ваш пароль:</td>
+                                                <td>{{ user.password }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>дата регистрации:</td>
+                                                <td>{{ user.date }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>дата изменения:</td>
+                                                <td>{{ user.editdate }}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Изменить личную информацию-->
+                    <div class="tab-pane fade" id="pills-planning" role="tabpanel" aria-labelledby="pills-planning-tab">
+                        <div class="tab-five-head">
+                            <div class="tab-five-img">
+                                {% if user.img %}
+                                <img src="{{user.img.url}}" alt="" width="200">
+                                {% else %}
+                                <img src="/static/main/images/tab/tab-img-02.jpg" alt="img" width="300">
+                                {% endif %}
+                            </div>
+                            <div class="tab-five-content">
+                                <h2>Strategic Planning</h2>
+                                <div class="tab-five-strategic">
+                                    <form method="POST" action="{% url 'edituser' user.id %}" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="mt-2">
+                                            <p class="mb-0">Ваше фото:</p>
+                                            <input type="file" name="img" value="{{user.img}}"/>
+                                        </div>
+                                        <div class="mt-2">
+                                            <p class="mb-0">Ваше имя:</p>
+                                            <input type="text" class="my-width name" name="name" placeholder="Name*" value="{{user.name}}"/>
+                                        </div>
+                                        <div class="mt-2">
+                                            <p class="mb-0">Ваша Фамилия:</p>
+                                            <input type="text" class="my-width family" name="family"
+                                                   placeholder="family*" value="{{user.family}}"/>
+                                        </div>
+                                        <div class="mt-2">
+                                            <p class="mb-0">Ваша почта</p>
+                                            <input type="email" class="my-width email" name="email"
+                                                   placeholder="Email*" value="{{user.email}}"/>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <p class="mb-0">Придумайте пароль</p>
+                                            <input type="password" class="my-width password" id="r" name="password"
+                                                   placeholder="Password*" value="{{user.password}}"/>
+
+                                        </div>
+                                        <input type="submit" value="Изменить" class="btn btn-dark">
+
+                                    </form>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Список аптек-->
+                    <div class="tab-pane fade" id="pills-investment" role="tabpanel"
+                         aria-labelledby="pills-investment-tab">
+                        <div class="tab-five-head">
+                            <div class="tab-five-img">
+                                <img src="images/tab/tab-img-02.jpg" alt="img">
+                            </div>
+                            <div class="tab-five-content">
+                                <h2>Investment Planning</h2>
+                                <div class="tab-five-strategic">
+                                    <div class="tab-icon">
+                                        <i class="far fa-lightbulb"></i>
+                                    </div>
+                                    <div class="strategic-content">
+                                        <h5>Business consulting</h5>
+                                        <p>Lorem ipsum is simply dummy text of the printing typesetting ipsum been
+                                            text.</p>
+                                    </div>
+                                </div>
+                                <div class="tab-five-strategic straregic-two">
+                                    <div class="tab-icon">
+                                        <i class="fas fa-globe"></i>
+                                    </div>
+                                    <div class="strategic-content">
+                                        <h5>Innovative solutions</h5>
+                                        <p>Lorem ipsum is simply dummy text of the printing typesetting ipsum been
+                                            text.</p>
+                                    </div>
+                                </div>
+                                <a href="javascript:;">Discover Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Список лекарств-->
+                    <div class="tab-pane fade" id="pills-report" role="tabpanel" aria-labelledby="pills-report-tab">
+                        <div class="tab-five-head">
+                            <div class="tab-five-img">
+                                <img src="images/tab/tab-img-02.jpg" alt="img">
+                            </div>
+                            <div class="tab-five-content">
+                                <h2>Expense Reporting</h2>
+                                <div class="tab-five-strategic">
+                                    <div class="tab-icon">
+                                        <i class="far fa-lightbulb"></i>
+                                    </div>
+                                    <div class="strategic-content">
+                                        <h5>Business consulting</h5>
+                                        <p>Lorem ipsum is simply dummy text of the printing typesetting ipsum been
+                                            text.</p>
+                                    </div>
+                                </div>
+                                <div class="tab-five-strategic straregic-two">
+                                    <div class="tab-icon">
+                                        <i class="fas fa-globe"></i>
+                                    </div>
+                                    <div class="strategic-content">
+                                        <h5>Innovative solutions</h5>
+                                        <p>Lorem ipsum is simply dummy text of the printing typesetting ipsum been
+                                            text.</p>
+                                    </div>
+                                </div>
+                                <a href="javascript:;">Discover Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

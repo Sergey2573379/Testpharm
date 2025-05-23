@@ -1,0 +1,79 @@
+{% extends "index.html"%}
+
+
+{% block content %}
+
+
+
+<form method="POST" action="" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <table class="table table-bordered border-primary">
+                                    <tr>
+                                        <td>Название лекарства</td>
+                                        <td><input type="text" name="title" class="form-control"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Цена</td>
+                                        <td><input type="text" name="price" class="form-control"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>описание</td>
+                                        <td><textarea type="text" name="article" class="form-control"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Фото</td>
+                                        <td><input type="file" class="form-control" name="img"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Категория</td>
+                                        <td>
+                                            <select class="form-control select1" name="caetegorydrug_id"
+                                                    style='width: 100%;'>
+                                                <option>--Выберите категорию--</option>
+                                                {% for item in cat %}
+                                                <option {% if item.id == drug.caetegorydrug_id %}
+                                                        selected='selected'
+                                                        {% endif %}
+                                                        value="{{ item.id}}">{{item.title}}
+                                                </option>
+                                                {% endfor %}
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Аптека</td>
+                                        <td>
+                                            <select class="form-control select1" name="caetegorydorixona_id"
+                                                    style='width: 100%;'>
+                                                <option>--Выберите Аптеку--</option>
+                                                {% for item in dori %}
+                                                <option {% if item.id == drug.caetegorydorixona_id %}
+                                                        selected='selected'
+                                                        {% endif %}
+                                                        value="{{ item.id}}">{{item.title}}
+                                                </option>
+                                                {% endfor %}
+                                            </select>
+                                        </td>
+                                    </tr>
+
+
+                                </table>
+
+                                <a href="">
+                                    <button name="button">довавить</button>
+                                </a>
+                            </form>
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+

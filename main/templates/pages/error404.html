@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- 
+   Template Name: medisch
+   Version: 1.0.0
+   Author:  Webstrot
+   
+   -->
+<!--[if IE 8]> 
+<html lang="en" class="ie8 no-js">
+   <![endif]-->
+<!--[if IE 9]> 
+   <html lang="en" class="ie9 no-js">
+      <![endif]-->
+<!--[if !IE]><!-->
+<html lang="zxx" dir="ltr">
+<!--[endif]-->
+
+<head>
+   <meta charset="utf-8" />
+   <title>Medical</title>
+   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+   <!--Template style -->
+   <link rel="stylesheet" type="text/css" href="css/animate.css" />
+   <link rel="stylesheet" type="text/css" href="css/animate.min.css" />
+   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+   <link rel="stylesheet" type="text/css" href="css/fonts.css" />
+   <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+   <link rel="stylesheet" type="text/css" href="css/magnific-popup.css" />
+   <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css" />
+   <link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css" />
+   <link rel="stylesheet" type="text/css" href="css/style.css" />
+   <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+   <!--favicon-->
+   <link rel="shortcut icon" type="image/png" href="images/fav-icon.png" />
+</head>
+
+<body>
+   <!-- 404 page start -->
+   <div class="Error-page-main-wrapper" id="window-height">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+               <div class="sb-error-section">
+                  <img src="images/logo.png" alt="img">
+               </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+               <div class="resp-text d-xl-none d-lg-none d-md-block d-block">
+                  <h2>404</h2>
+               </div>
+               <div class="sb-error-content">
+                  <h2>Oops! Page Not Found</h2>
+                  <p class="px-2">The page you are looking for was moved, removed,
+                     renamed or might never existed.
+                  </p>
+                  <a href="index.html" class="button-btn mt-4">Back To Home
+                     <span><i class="fas fa-angle-double-right"></i></span>
+                  </a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Side Panel -->
+   <script src="js/jquery-3.6.0.min.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+   <script src="js/wow.js"></script>
+   <script src="js/jquery.magnific-popup.js"></script>
+   <script src="js/owl.carousel.min.js"></script>
+   <script src="js/contact_form.js"></script>
+   <script src="js/custom.js"></script>
+   <!-- custom js-->
+   <script>
+      function setWindowWH() {
+         // get window width and height
+         var windowHeight = $(window).height();
+
+         // add to DOM
+         $("#window-height").css("height", windowHeight + "px");
+      }
+      // run function on window load and resize
+      $(window).on("load resize", function () {
+         setWindowWH();
+      });
+   </script>
+</body>
+
+</html>

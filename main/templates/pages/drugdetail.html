@@ -1,0 +1,276 @@
+{% extends "index.html"%}
+
+
+{% block content %}
+
+<div class="service-main-page-wrapper float_left ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+                <div class="servie-left-sidebar">
+                    <div class="slider-sec">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    {% if drugs.img %}
+                                    <img src="{{drugs.img.url}}" class="d-block w-100" alt="img">
+                                    {% else %}
+                                    <img src="/static/main/images/service-big1.jpg" class="d-block w-100" alt="img">
+                                    {% endif %}
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                   <div class="service-content mt-25">
+                        <h6 class="mb-2">{{ drugs.title }}</h6>
+                        <p>
+                            {{ drugs.article }}
+                        </p>
+                    </div>
+                    <p class="card-text">Цена:{{ drugs.price }}</p>
+                    {% if user.status == '1' %}
+                        <a href="" class="btn btn-primary cart-click" data-id="{{ drugs.id}}" data-url="{% url 'addajax'%}" >купить</a>
+                    {% endif %}
+
+                    <div class="booking-main-sec mt-25">
+                        <div class="form-section">
+                            <h6>недавно просмотренные</h6>
+                            <div class="form-input plr-15">
+                                <section>
+
+                                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                                        {% for item in randomdrug%}
+                                        <div class="card col" style="width: 15rem; margin: 10px;">
+                                            {% if item.img %}
+                                            <img src="{{item.img.url}}" alt="" width="200">
+                                            {% else %}
+                                            <img src="/static/main/images/tab/tab-img-02.jpg" alt="img" width="100">
+                                            {% endif %}
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ item.title }}</h5>
+                                                <p class="card-text">{{ item.article|truncatewords:5 }}</p>
+                                                <a href="{% url 'drugdetail' item.id %}" class="btn btn-primary">подробнее</a>
+                                                <a href="" class="btn btn-primary winclick" data-id="{{ item.id}}" data-url="{% url 'werajax' item.id%}">быстрый просмотр</a>
+                                                <p class="card-text"><a href="{% url 'dorixonadrug' item.caetegorydorixona_id  %}">Аптека:{{ item.caetegorydorixona.title }}</a></p>
+                                                <p class="card-text"><a href="{% url 'categordrug' item.caetegorydrug_id  %}">Категория:{{ item.caetegorydrug.title }}</a></p>
+                                                <p class="card-text">Цена:{{ item.price }}</p>
+                                                {% if user.status == '1' %}
+                                                    <a href="" class="btn btn-primary cart-click" data-id="{{ item.id}}" data-url="{% url 'addajax'%}" >купить</a>
+                                                {% endif %}
+
+                                                <!-- Button trigger modal -->
+
+                                            </div>
+                                        </div>
+                                        {% endfor%}
+                                        <!-- Modal -->
+{% include 'components/modalwin.html' %}
+{% include 'components/modalwin3.html' %}
+{% include 'components/modalwin2.html' %}
+                                    </div>
+
+                                </section>
+                                <section>
+                                    <h5>Оставить коментарий</h5>
+                                    <div class="row ">
+                                        <form method="POST" action="">
+                                            {% csrf_token %}
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <textarea class="form-control mt-4 ps-3" rows="3"
+                                                          placeholder="Enter Text" name="article"></textarea>
+                                            </div>
+                                            <a href="javascript:;" >
+                                                 <button class="button-btn mt-4">Post Comment <span><i class="fas fa-angle-double-right"></i></span></button>
+
+                                            </a>
+                                        </form>
+                                    </div>
+
+                                </section>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-section">
+                        <h4 class="mb-5">{{number}}</h4>
+                        {% for item in coment %}
+                        <ul class="d-flex align-items-center comment-border">
+                            <li class="me-4">
+                                {% if item.comusers.img %}
+                                <img src="{{ item.comusers.img.url }}" alt="img" width="100" >
+                                {% else %}
+                                <img src="/static/main/images/coment-img.jpg" alt="img" width="100" >
+                                {% endif %}
+
+                            </li>
+                            <li>
+                                <h5>{{ item.comusers.name }}
+                                    <span>{{ item.date }}  </span>
+                                </h5>
+                                <p>{{ item.article }}
+                                </p>
+                            </li>
+                        </ul>
+                        {% endfor %}
+
+                    </div>
+                    <div class="form-section mb-4">
+                        <h6>Leave a Comment</h6>
+                        <div class="form-input plr-15">
+                            <div class="row ">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="input-group flex-nowrap mt-4">
+                                        <input type="text" class="form-control" placeholder="Name">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="input-group flex-nowrap mt-4">
+                                        <input type="email" class="form-control" placeholder="Email">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                              <textarea class="form-control mt-4 ps-3" id="exampleFormControlTextarea1" rows="3"
+                                        placeholder="Enter Text"></textarea>
+                                    <div class="mt-2 checkbox-wrap">
+                                        <input type="checkbox" name="select" id="comment">
+                                        <label for="comment">
+                                            By using this form you agree with the storage and handling of your
+                                            data by this website Privacy Policy.
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                <a href="javascript:;" class="button-btn mt-4">Post Comment
+                                    <span><i class="fas fa-angle-double-right"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                <div class="right-section2">
+                    <div class="form-section ">
+                        <h6>Аптеки</h6>
+                        <section>
+                            <ul class="categories">
+                                {% for item in dorix %}
+                                <li>
+                                    <span><i class="fas fa-angle-double-right"></i></span>
+                                    <a href="{% url 'dorixonadrug' item.id %}">{{ item.title }}</a>
+                                </li>
+                                {% endfor%}
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="form-section ">
+                        <h6>Categories</h6>
+                        <section>
+                            <ul class="categories">
+                                {% for item in cat %}
+                                <li>
+                                    <span><i class="fas fa-angle-double-right"></i></span>
+                                    <a href="{% url 'categordrug' item.id %}">{{ item.title }}</a>
+                                </li>
+                                {% endfor%}
+                            </ul>
+                        </section>
+                    </div>
+
+
+                    <div class="mt-25 form-section">
+                        <h6>FAQ</h6>
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                        Learn Anytime & Anywhere
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show"
+                                     aria-labelledby="headingOne"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>Morbi accumsan betu ipsum lit. Nam nec aks tellus a odio cidunt auctor. Proi
+                                            gravida
+                                            nibh.</p>
+                                        <ul>
+                                            <li>Nisi elit consequat ipsum.</li>
+                                            <li>Proin gravida nibh vel.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseTwo" aria-expanded="false"
+                                            aria-controls="collapseTwo">
+                                        Accordion Item #2
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>Morbi accumsan betu ipsum lit. Nam nec aks tellus a odio cidunt auctor. Proi
+                                            gravida
+                                            nibh.</p>
+                                        <ul>
+                                            <li>Nisi elit consequat ipsum.</li>
+                                            <li>Proin gravida nibh vel.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed border-none" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                            aria-expanded="false"
+                                            aria-controls="collapseThree">
+                                        Get Training From Expert
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse "
+                                     aria-labelledby="headingThree"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>Morbi accumsan betu ipsum lit. Nam nec aks tellus a odio cidunt auctor. Proi
+                                            gravida
+                                            nibh.</p>
+                                        <ul>
+                                            <li>Nisi elit consequat ipsum.</li>
+                                            <li>Proin gravida nibh vel.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-section social">
+                        <h6>Social Media</h6>
+                        <ul class="d-flex justfiy-content-start align-items-center p-4">
+                            <li><a href="javascript:;"><i class="fab fa-facebook-f icon-color"></i></a></li>
+                            <li><a href="javascript:;"><i class="fab fa-twitter icon-color"></i></a></li>
+                            <li><a href="javascript:;"><i class="fab fa-instagram icon-color"></i></a></li>
+                            <li><a href="javascript:;"><i class="fab fa-pinterest-p icon-color"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+

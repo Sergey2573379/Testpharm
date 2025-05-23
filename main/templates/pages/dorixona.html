@@ -1,0 +1,122 @@
+{% extends "index.html"%}
+
+
+{% block content %}
+
+
+<div class="team-three-wrapper padd-100 float-start w-100">
+        <div class="section-heading">
+            <div style="text-align:center;"><h1>Аптеки</h1></div>
+
+        </div>
+        <div class="container">
+            <div class="row">
+                {% for item in dorixon %}
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                    <div class="team-three-wrapper">
+                        <div class="team-three-img shadow p-3 mb-5 bg-body-tertiary rounded">
+                            <div style="width:279px; height:361px;">
+                                <h4>{{ item.title }}</h4>
+                                <p>{{ item.article }}</p>
+                            </div>
+                            <div class="team-three-overlay">
+                                <span><a href="{% url 'dorixonadrug' item.id %}">В аптеку</a></span>
+                                <div class="social-icon-three">
+                                    <a href="javascript:;">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="javascript:;">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="javascript:;">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="javascript:;">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor  %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="/static/main/js/jquery-3.6.0.min.js"></script>
+    <script src="/static/main/js/bootstrap.min.js"></script>
+    <script src="/static/main/js/owl.carousel.min.js"></script>
+    <script src="/static/main/js/wow.js"></script>
+    <script src="/static/main/js/jquery.magnific-popup.js"></script>
+    <script src="/static/main/js/contact_form.js"></script>
+    <script src="/static/main/js/custom.js"></script>
+<script>
+
+        $('.team-slider-wrapper .owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            dots: true,
+            items: 3,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 3
+                }
+            }
+        })
+    </script>
+
+ <script>
+        $('.slider-two-wrapper .owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            dots: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 4
+                }
+            }
+        })
+    </script>
+
+<script>
+        $('.team-four-wrapper .owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: false,
+            dots: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 3
+                }
+            }
+        })
+    </script>
+
+
+{% endblock %}
+

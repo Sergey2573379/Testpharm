@@ -1,0 +1,69 @@
+<div class="blog-box">
+                        <div class="blog-content p-0 ">
+                            <table width="100%" cellspacing="0" cellpadding="5">
+                   	  <tr bgcolor="#CCCCCC">
+                        	<th width="220" align="left">Image </th>
+                        	<th width="180" align="left">Description </th>
+                       	  	<th width="100" align="center">Quantity </th>
+                        	<th width="60" align="right">Price </th>
+                        	<th width="60" align="right">Total </th>
+                        	<th width="90"> </th>
+
+                      </tr>
+                      {% for item in card %}
+                    	<tr>
+                        	{% if item.img %}
+                            <td><img src="{{item.img.url }}" alt="{{item.title}}" width="100"></td>
+                            {% else %}
+                            <td><img src="/static/main/images/tab/tab-img-02.jpg" alt="img" width="100"></td>
+                            {% endif %}
+                        	<td>{{ item.title }}</td>
+                            <td align="center">
+
+
+                                  <a  style="cursor:pointer" onclick="plus({{item.id}})" class="plus" data-id="" data-url="{% url 'plus' %}">+</a>
+
+
+                                <input type="text" value="{{ item.quantity }}" style="width: 25px; text-align: right" />
+                                 {% if item.quantity == 1 %}
+
+                                {% else %}
+                                  <a style="cursor:pointer" onclick="minus({{item.id}})" class="minus" data-id="" data-url="{% url 'minus' %}">-</a>
+                                {% endif %}
+
+                            </td>
+                            <td align="right">${{ item.price }}</td>
+
+                            <td align="right">${% widthratio item.price 1 item.quantity %}</td>
+
+                            <td align="center"> <a href="{% url 'dellproduct' item.id %}">удалить</a> </td>
+						</tr>
+                        {% endfor %}
+                        <tr>
+                        	<td colspan="3" align="right"  height="40px">Have you modified your basket? Please click here to <a href="shoppingcart.html"><strong>Update</strong></a>&nbsp;&nbsp;</td>
+                            <td align="right" style="background:#ccc; font-weight:bold"> Total </td>
+                            <td align="right" style="background:#ccc; font-weight:bold">${{total_price}} </td>
+                            <td style="background:#ccc; font-weight:bold"><a href="{% url 'clear_cart' %}" class="clear_cart">Очистить корзину</a> </td>
+						</tr>
+                        <tr>
+
+                            {% if user %}
+                        	<td colspan="6" align="center"  height="40px">
+
+                                <form method="POST" action="">
+                                    {% csrf_token %}
+
+                                    <a href="#" type="button"><strong><input type="submit" value="Купить"></strong></a>&nbsp;&nbsp;
+                                </form>
+
+                            </td>
+                            {% else  %}
+                            <td colspan="6" align="center"  height="40px"> <a href="{% url 'home' %}"><strong>Зарегестрируйтесь</strong></a>&nbsp;&nbsp;</td>
+                            {% endif  %}
+
+						</tr>
+					</table>
+
+                        </div>
+
+                    </div>

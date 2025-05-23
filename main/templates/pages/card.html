@@ -1,0 +1,142 @@
+{% extends "index.html"%}
+
+
+{% block content %}
+<h1>привет мир!!!!!!! это корзина</h1>
+
+<div class="blog-page-main-container float_left ptb-100">
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-lg-8 col-md-12 col-sm-12">
+                <div class="blog-single-main-page ">
+                    <h2>Корзина пользователя: {{ user.name }}</h2>
+                    <div class="blog-box">
+                        <div class="blog-content p-0 ">
+                            <table width="100%" cellspacing="0" cellpadding="5">
+                   	  <tr bgcolor="#CCCCCC">
+                        	<th width="220" align="left">Image </th>
+                        	<th width="180" align="left">Description </th>
+                       	  	<th width="100" align="center">Quantity </th>
+                        	<th width="60" align="right">Price </th>
+                        	<th width="60" align="right">Total </th>
+                        	<th width="90"> </th>
+
+                      </tr>
+                      {% for item in card %}
+                    	<tr>
+                        	{% if item.img %}
+                            <td><img src="{{item.img.url }}" alt="{{item.title}}" width="100"></td>
+                            {% else %}
+                            <td><img src="/static/main/images/tab/tab-img-02.jpg" alt="img" width="100"></td>
+                            {% endif %}
+                        	<td>{{ item.title }}</td>
+                            <td align="center">
+
+
+                                  <a href="{% url 'plus' item.prod_id %}">+</a>
+
+
+                                <input type="text" value="{{ item.quantity }}" style="width: 25px; text-align: right" />
+                                 {% if item.quantity == 1 %}
+
+                                {% else %}
+                                  <a href="{% url 'minus' item.prod_id %}">-</a>
+                                {% endif %}
+
+                            </td>
+                            <td align="right">${{ item.price }}</td>
+
+                            <td align="right">${% widthratio item.price 1 item.quantity %}</td>
+
+                            <td align="center"> <a href="{% url 'dellproduct' item.id %}">удалить</a> </td>
+						</tr>
+                        {% endfor %}
+                        <tr>
+                        	<td colspan="3" align="right"  height="40px">Have you modified your basket? Please click here to <a href="shoppingcart.html"><strong>Update</strong></a>&nbsp;&nbsp;</td>
+                            <td align="right" style="background:#ccc; font-weight:bold"> Total: ${{total_price}} </td>
+                            <td align="right" style="background:#ccc; font-weight:bold"> </td>
+                            <td style="background:#ccc; font-weight:bold"><a href="{% url 'clear_cart' %}" class="clear_cart">Очистить корзину</a> </td>
+						</tr>
+                        <tr>
+
+                            {% if user %}
+                        	<td colspan="6" align="center"  height="40px">
+
+                                <form method="POST" action="">
+                                    {% csrf_token %}
+
+                                    <a href="#" type="button"><strong><input type="submit" value="Купить"></strong></a>&nbsp;&nbsp;
+                                </form>
+
+                            </td>
+                            {% else  %}
+                            <td colspan="6" align="center"  height="40px"> <a href="{% url 'home' %}"><strong>Зарегестрируйтесь</strong></a>&nbsp;&nbsp;</td>
+                            {% endif  %}
+
+						</tr>
+					</table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                <div class="right-section2">
+                    <div class="form-section ">
+                     <h6>Аптеки</h6>
+                     <section>
+                        <ul class="categories">
+                            {% for item in dorix %}
+                           <li>
+                              <span><i class="fas fa-angle-double-right"></i></span>
+                              <a href="{% url 'dorixonadrug' item.id %}">{{ item.title }}</a>
+                           </li>
+                           {% endfor%}
+                        </ul>
+                     </section>
+                  </div>
+                    <div class="form-section ">
+                     <h6>Categories</h6>
+                     <section>
+                        <ul class="categories">
+                            {% for item in cat %}
+                           <li>
+                              <span><i class="fas fa-angle-double-right"></i></span>
+                              <a href="{% url 'categordrug' item.id %}">{{ item.title }}</a>
+                           </li>
+                           {% endfor%}
+                        </ul>
+                     </section>
+                  </div>
+                    <div class="form-section mt-25">
+                        <h6>Location</h6>
+                        <div style="width: 100%">
+                            <iframe height="350"
+                                    src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                            <a
+                                    href="https://www.maps.ie/draw-radius-circle-map/"></a></div>
+                    </div>
+                    <div class="form-section social">
+                        <h6>Social Media</h6>
+                        <ul class="d-flex justfiy-content-start align-items-center p-4">
+                            <li><a href="javascript:;"><i class="fab fa-facebook-f icon-color"></i></a></li>
+                            <li><a href="javascript:;"><i class="fab fa-twitter icon-color"></i></a></li>
+                            <li><a href="javascript:;"><i class="fab fa-instagram icon-color"></i></a></li>
+                            <li><a href="javascript:;"><i class="fab fa-pinterest-p icon-color"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+

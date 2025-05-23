@@ -1,0 +1,25 @@
+{% extends "index.html"%}
+
+
+{% block content %}
+
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <table class="table table-bordered border-primary">
+        <tr>
+            <td>Название категории</td>
+            <td><input type="text" name="title" class="form-control"/></td>
+        </tr>
+    </table>
+
+    <a href="">
+        <button name="button">довавить</button>
+    </a>
+</form>
+
+
+{% endblock %}
+
+
+

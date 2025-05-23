@@ -1,0 +1,38 @@
+<script src="/static/main/js/jquery-3.6.0.min.js"></script>
+   <script src="/static/main/js/bootstrap.min.js"></script>
+   <script src="/static/main/js/wow.js"></script>
+   <script src="/static/main/js/jquery.magnific-popup.js"></script>
+   <script src="/static/main/js/owl.carousel.min.js"></script>
+   <script src="/static/main/js/contact_form.js"></script>
+   <script src="/static/main/js/custom.js"></script>
+   <!-- custom js-->
+   <script>
+      wow = new WOW(
+         {
+            animateClass: 'animated',
+            offset: 100,
+            callback: function (box) {
+               console.log("WOW: animating <" + box.tagName.toLowerCase() + ">")
+            }
+         }
+      );
+      wow.init();
+   </script>
+   <script>
+   function actionToggleOne() {
+   let action = document.querySelector('.contact-action');
+   action.classList.toggle('open1');
+   }
+   function actionToggleTwo() {
+      let action = document.querySelector('.action-1');
+      action.classList.toggle('open2');
+   }
+   function actionToggleThree() {
+      let action = document.querySelector('.action-2');
+      action.classList.toggle('open3');
+   }
+   function actionToggleFour() {
+      let action = document.querySelector('.action-3');
+      action.classList.toggle('open4');
+   }
+   </script>
